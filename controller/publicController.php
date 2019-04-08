@@ -11,14 +11,14 @@ $mainMenu = recupCategMenu($mysqli);
 /*
  * article detail
  */
-if(isset($_GET['idarticle'])&&ctype_digit($_GET['idarticle'])){
+if(isset($_GET['idarticle'])&& ctype_digit($_GET['idarticle'])){
 
 
 
 /*
  * rubrique detail
  */
-}elseif(isset($_GET['idrubrique'])&&ctype_digit($_GET['idrubrique'])){
+}elseif(isset($_GET['idrubrique'])&& ctype_digit($_GET['idrubrique'])){
 
 
 
