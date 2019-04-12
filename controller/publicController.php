@@ -12,13 +12,11 @@ $mainMenu = recupCategMenu($mysqli);
 /*
  * article detail
  */
-<<<<<<< HEAD
-if(isset($_GET['idarticle'])&& ctype_digit($_GET['idarticle'])){
-=======
+
+
 if(isset($_GET['idarticle'])&&ctype_digit($_GET['idarticle'])){
     $idarticle = (int) $_GET['idarticle'];
     $article = recupOneArticle($mysqli,$idarticle);
->>>>>>> 13f69cf0fbe43f5a6ce4ce0a27a62bc754aaed48
 
     // include view
     include("../view/publicArticleView.php");
