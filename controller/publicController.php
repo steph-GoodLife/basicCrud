@@ -12,12 +12,21 @@ $mainMenu = recupCategMenu($mysqli);
 /*
  * article detail
  */
+<<<<<<< HEAD
 if(isset($_GET['idarticle'])&& ctype_digit($_GET['idarticle'])){
+=======
+if(isset($_GET['idarticle'])&&ctype_digit($_GET['idarticle'])){
+    $idarticle = (int) $_GET['idarticle'];
+    $article = recupOneArticle($mysqli,$idarticle);
+>>>>>>> 13f69cf0fbe43f5a6ce4ce0a27a62bc754aaed48
 
-
+    // include view
+    include("../view/publicArticleView.php");
 
 /*
+ *
  * rubrique detail
+ *
  */
 }elseif(isset($_GET['idrubrique'])&& ctype_digit($_GET['idrubrique'])){
 
@@ -27,8 +36,9 @@ if(isset($_GET['idarticle'])&& ctype_digit($_GET['idarticle'])){
  * Homepage
  */
 }else{
-
+    // articles récuparation
+    $articles = recupArticleHomepage($mysqli);
 
     // include view
-    include("../view/publicHomepage.php");
+    include("../view/publicHomepageView.php");
 }
