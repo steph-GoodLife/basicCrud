@@ -15,3 +15,16 @@ function recupCategMenu(mysqli $db) {
         return false;
     }
 }
+
+function recupOneRubrique(mysqli $db, int $id){
+    $id = (int) $id;
+    $sql = "SELECT * FROM rubrique WHERE idrubrique = $id;";
+    $recup = mysqli_query($db,$sql);
+
+    if(mysqli_num_rows($recup)){
+        return mysqli_fetch_assoc($recup);
+    }else{
+        return false;
+    }
+
+}

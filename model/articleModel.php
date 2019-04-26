@@ -54,3 +54,35 @@ function recupOneArticle(mysqli $db, int $id){
         return false;
     }
 }
+
+function recupArticleRub(mysqli $db, int $idrub){
+    $idrub = (int) $idrub;
+    $sql="SELECT a.thetitle, a.thetext, a.thedate,
+	   u.thename,
+       GROUP_CONCAT(r.idrubrique ORDER BY r.theintitule) AS idrubrique, 
+       GROUP_CONCAT(r.theintitule ORDER BY r.theintitule SEPARATOR '|@|') AS theintitule
+	FROM article a
+    INNER JOIN users u
+		ON u.idusers = a.users_idusers
+    LEFT JOIN article_has_rubrique h
+		ON h.article_idarticle = a.idarticle
+    LEFT JOIN rubrique r
+    ON h.rubrique_idrubrique = r.idrubrique
+    where a.thevisibility = 1
+    AND h.rubrique_idrubrique
+    IN(
+        SELECT h.rubrique_idrubrique
+        FROM article_has_rubrique h
+        WHERE  h.rubrique_idrubrique =5 OR 2
+    )
+    GROUP BY  a.idarticle
+    ORDER BY a.thedate DESC;";
+
+    $recup=mysqli_query($db,$sql);
+
+    if(mysqli_num_rows($recup)){
+        return mysqli_fetch_assoc($recup);
+    }else{
+       return false;
+    }
+}

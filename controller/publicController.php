@@ -27,8 +27,19 @@ if(isset($_GET['idarticle'])&&ctype_digit($_GET['idarticle'])){
  *
  */
 }elseif(isset($_GET['idrubrique'])&& ctype_digit($_GET['idrubrique'])){
+    $idrubrique = (int) $_GET['idrubrique'];
 
+    //recuperation du detail de la rubrique
+    $detailRubrique = recupOneRubrique($mysqli, $idrubrique);
 
+    //si la categorie n'existe pas
+    if($detailRubrique===false){
+        //include view error404
+        include("../view/error404.php");
+    }
+
+    //include view
+    include("../view/publicRubriqueView.php");
 
 /*
  * Homepage
