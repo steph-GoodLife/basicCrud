@@ -23,14 +23,14 @@ include "publicMainMenuView.php";
 <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center">
-            <h1 class="mt-5">basicCrud Rubriques</h1>
+            <h1 class="mt-5">basicCrud Rubriques:<?= $detailRubrique['theintitule'] ?></h1>
             <p class="lead">Liste des rubriques de notre site</p>
         </div>
     </div>
     <!-- rubriques -->
     <?php
     // pas de rubriques
-    if($detailRubrique===false){
+    if($articleRub===false){
         ?>
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -42,7 +42,7 @@ include "publicMainMenuView.php";
         </div>
         <?php
     }else {
-        foreach ($detailRubrique AS $itemRubriques) {
+        foreach ($articleRub AS $itemRubriques) {
             // pas de rubriques
             if(isset($itemRubriques['idrubrique'])){
                 $idrubrique="";
@@ -53,9 +53,9 @@ include "publicMainMenuView.php";
             <div class="row">
                 <div class="col-lg-12 text-left">
 
-                    <h4>Catégorie :<h4><?= $detailRubrique['theintitule'] ?></h4>
+                    <h4>Catégorie :<h4><?= $articleRub['theintitule'] ?></h4>
                         <small><?php
-                            if(!isset($detailRubrique)){
+                            if(!isset($articleRub)){
                                 ?>
                                 Cet article n'est dans aucune catégorie
     <?php
