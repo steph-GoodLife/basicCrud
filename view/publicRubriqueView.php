@@ -7,7 +7,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+
     <title>basicCrud Rubriques</title>
+
+    <title>basicCrud Catégorie: <?=$detailRubrique['theintitule']?></title>
+
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -16,13 +20,16 @@
 <body>
 
 <!-- Navigation -->
-<?php
-include "publicMainMenuView.php";
-?>
+
+    <?php
+    include "publicMainMenuView.php";
+    ?>
+
 <!-- Page Content -->
 <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center">
+
             <h1 class="mt-5">basicCrud Rubriques:<?= $detailRubrique['theintitule'] ?></h1>
             <p class="lead">Liste des rubriques de notre site</p>
         </div>
@@ -31,27 +38,48 @@ include "publicMainMenuView.php";
     <?php
     // pas de rubriques
     if($articleRub===false){
-        ?>
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <hr>
-                <h2>Pas encore d'articles</h2>
-                <h3>Veuillez revenir plus tard</h3>
-                <hr>
-            </div>
-        </div>
-        <?php
+?>
+            <h1 class="mt-5">basicCrud Catégorie: <?=$detailRubrique['theintitule']?></h1>
+    <p class="lead"><?= $detailRubrique['thedesc'] ?></p>
+</div>
+
+<!-- Articles -->
+<?php
+// pas d'article
+if($articlesRub === false){
+
+?>
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <hr>
+
+        <h2>Pas encore d'articles</h2>
+
+        <h2>Pas encore d'articles dans cette rubrique</h2>
+
+        <h3>Veuillez revenir plus tard</h3>
+        <hr>
+    </div>
+    <?php
+    }
+    ?>
+</div>
+
+    <?php
     }else {
-        foreach ($articleRub AS $itemRubriques) {
+        foreach ($articlesRub AS $itemArticle) {
             // pas de rubriques
-            if(isset($itemRubriques['idrubrique'])){
+            if(is_null($itemArticle['idrubrique'])){
                 $idrubrique="";
             }else {
+     $idrubrique = explode(',', $itemArticle['idrubrique']);
+     $theintitule = explode('|@|',$itemArticle['theintitule']);
 
             }
             ?>
             <div class="row">
                 <div class="col-lg-12 text-left">
+
 
                     <h4>Catégorie :<h4><?= $articleRub['theintitule'] ?></h4>
                         <small><?php
@@ -72,10 +100,14 @@ include "publicMainMenuView.php";
 }
 }
 ?>
-</div>
+
 
 <!-- Bootstrap core JavaScript -->
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
+
+
+
